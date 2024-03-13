@@ -30,9 +30,19 @@ int find_substring_light_rabin_karp(std::string fullStr, std::string findStr){
 	for (int i = 0; i < fullStr.size(); i++) {
 		if (findstrHash == real_string_hash(fullStr,i,i + findStr.size() )) {
 			index = i;
+			bool flag = true;
+			for (int j = index,k = 0; j < index + findStr.size(); j++, k++) {
+				if(findStr[k] != fullStr[j]){
+					flag = false;
+				}
+			}
+			if (flag == false) {
+				continue;
+			}
 			break;
 		}
 	}
+
 	return index;
 };
 
